@@ -1,19 +1,10 @@
-
-#!/usr/bin/env python
-#----------------------------------------------------------------------------#
-#------------------------------------------------------------------ HEADER --#
-
 """
 @author:
-    acportillo
+    Alejandro Cabrera
 
 @description:
     select short curves from animwires warning dialog [ XGEN ]
 
-@applications:
-    - groom
-    - cfx
-    - fur
 """
 
 

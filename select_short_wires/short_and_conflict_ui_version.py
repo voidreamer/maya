@@ -1,7 +1,12 @@
-#!/usr/bin/env python
-#---------------------------------------#
-#----------------------------- HEADER --#
-# creates locator on conflicted areas 
+
+"""
+@author:
+    Alejandro Cabrera
+
+@description:
+    Creates locator on conflicted areas of the Xgen groom
+
+"""
 
 import maya.cmds as cmds
 import os

@@ -1,21 +1,12 @@
 
-#!/usr/bin/env python
-#----------------------------------------------------------------------------#
-#------------------------------------------------------------------ HEADER --#
-
 """
 @author:
-    acportillo
+    Alejandro Cabrera
 
 @description:
     render locally selected views
 
-@applications:
-    - groom
-    - cfx
-    - fur
 """
-
 
 import maya.cmds as cmds
 import maya.mel as mel
