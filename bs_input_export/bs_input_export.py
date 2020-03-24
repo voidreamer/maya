@@ -5,7 +5,7 @@ import maya.cmds as cmds
 selection = cmds.ls(sl=1)
 animwires_selection = cmds.ls(sl=1)
 
-animwires_selection = [ curve.replace("input_crvs", "ramarilla") for curve in selection ]
+animwires_selection = [ curve.replace("input_crvs", "output_crvs") for curve in selection ]
 
 blendshapes = []
 

@@ -22,7 +22,7 @@ def load_file():
     cmds.showWindow(w)
 
 def process_text(type):
-    fle = open("/home/acportillo/private/texto.txt","r")    
+    fle = open("/home/tv01d/private/texto.txt","r")    
     texto = fle.read()
     fle.close()
     if type:

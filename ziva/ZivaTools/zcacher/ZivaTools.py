@@ -34,7 +34,7 @@ class Form(QDialog):
 
         self.zivaCaches.addItems([zCaches for zCaches in cmds.ls(type = 'zCache')])
         
-        str(cmds.getAttr('rayburn:muscle_zSolver.startFrame'))
+        str(cmds.getAttr('char:muscle_zSolver.startFrame'))
 
         mainlayout = QFormLayout()
         layout = QFormLayout()      
