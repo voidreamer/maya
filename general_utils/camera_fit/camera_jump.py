@@ -1,8 +1,14 @@
 import maya.cmds as cmds
+import acMayaApi
 
-class Camera_jump():
+class CameraJump:
 
-    def __init__(oldcam, newcam, selected_object):
+    def __init__(self, oldcam, newcam, selected_object):
+
+        camera_node = acMayaApi.node.ACNode('camera1')
+        
+        for camera_child in camera_node.connections():
+            print camera_child
 
         oldcam = cmds.lookThru( q=True )
 
@@ -15,7 +21,7 @@ class Camera_jump():
 
         cmds.lookThru( oldcam )
         
-        [ selected_object = cmds.ls(sl=1)[0] if not selected_object ]
+        [ selected_object = cmds.ls(sl=1)[0] if not selected_object]
 
         cmds.viewFit(cmds.ls(selected_object))
 

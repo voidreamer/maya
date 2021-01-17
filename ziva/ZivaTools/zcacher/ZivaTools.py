@@ -32,7 +32,7 @@ class Form(QDialog):
         
         self.zivaCaches = QComboBox()
 
-        self.zivaCaches.addItems([zCaches for zCaches in cmds.ls(type = 'zCache')])
+        self.zivaCaches.addItems([zCaches for zCaches in cmds.ls(type='zCache')])
         
         str(cmds.getAttr('char:muscle_zSolver.startFrame'))
 
@@ -41,7 +41,7 @@ class Form(QDialog):
         layout2 = QFormLayout()   
         
         layout.addRow(self.zivaCaches)
-        layout.addRow(self.lCacheName, self.name )
+        layout.addRow(self.lCacheName, self.name)
         layout.addRow(self.lCacheStart, self.startFrame)
         layout.addRow(self.lCacheEnd, self.endFrame)
         layout.addRow(self.writeButton, self.loadButton)
@@ -53,9 +53,13 @@ class Form(QDialog):
         self.writeButton.clicked.connect(self.savefile)
         self.loadButton.clicked.connect(self.openfile)
         
-        
     def savefile(self):
-        dir = QFileDialog.getExistingDirectory(self, "Select Directory", "~", QFileDialog.ShowDirsOnly| QFileDialog.DontResolveSymlinks)  
+        dir = QFileDialog.getExistingDirectory(
+            self,
+            "Select Directory",
+            "~",
+            QFileDialog.ShowDirsOnly| QFileDialog.DontResolveSymlinks)
+
         if dir:            
             start_frame = int(self.startFrame.text())
             end_frame = int(self.endFrame.text())
@@ -88,7 +92,8 @@ class Form(QDialog):
                 mm.eval('zCache -load "{}" {}'.format(path, currentCache ))
          
             self.lResult.setText(" ... LOAD SUCCESSFUL ... ")
-    
+
+
 if __name__ == '__main__':
 
     # Create the Qt Application
@@ -96,4 +101,3 @@ if __name__ == '__main__':
     # Create and show the form
     form = Form()
     form.show()
-
