@@ -1,37 +1,46 @@
-
 """
 @author:
     Alejandro Cabrera
 
 @description:
-    render locally selected views
+    transpose selected follicles.
 
 """
 
-import maya.cmds as cmds
+import maya.cmds
+import acMayaApi
 
-class Transpose_follicles():
 
-    def selection:
-        oldmesh = cmds.listRelatives(cmds.ls(sl=1)[0])[0]
-        newmesh = cmds.listRelatives(cmds.ls(sl=1)[1])[0]
+def transpose_follicles(in_source,
+                        in_destination):
 
-    def __main__:
-        if cmds.objectType(object) != "mesh":
-            cmds.warning("invalid selection, select two meshes, origin and source")
-            return
-        else:
-            transpose_follicles(oldmesh, newmesh)
+    in_mesh = in_source + ".outMesh"
+    out_mesh = in_destination+".outMesh"
 
-    def transpose_follicles(source, destination):    
+    out_mesh_plug = maya.cmds.listConnections(out_mesh, p=1)
+    world_matrix0_plug = maya.cmds.listConnections(
+        in_source+".worldMatrix[0]", p=1)
 
-        con_outm = cmds.listConnections(source+".outMesh", p=1)
-        con_mtrx = cmds.listConnections(source+".worldMatrix[0]", p=1)
-        
-        for connection in con_outm:
-            cmds.disconnectAttr(source+".outMesh", connection)
-            cmds.connectAttr(destination+".outMesh", connection)
-            
-        for connection2 in con_mtrx:
-            cmds.disconnectAttr(source+".worldMatrix[0]", connection2)
-            cmds.connectAttr(destination+".worldMatrix[0]", connection2)
+    for connection in out_mesh_plug:
+        maya.cmds.disconnectAttr(in_mesh, connection)
+        maya.cmds.connectAttr(out_mesh, connection)
+
+    for connection2 in world_matrix0_plug:
+        maya.cmds.disconnectAttr(in_source+".worldMatrix[0]", connection2)
+        maya.cmds.connectAttr(in_destination+".worldMatrix[0]", connection2)
+
+    return
+
+
+if __name__ == "__main__":
+    if maya.cmds.objectType(object) != "mesh":
+        maya.cmds.warning("invalid selection, select two meshes, origin and source")
+    else:
+        old_mesh = maya.cmds.listRelatives(maya.cmds.ls(sl=1)[0])[0]
+        new_mesh = maya.cmds.listRelatives(maya.cmds.ls(sl=1)[1])[0]
+
+        transpose_follicles(old_mesh,
+                            new_mesh)
+
+
+

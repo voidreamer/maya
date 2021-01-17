@@ -1,5 +1,6 @@
 '''
 @author: Alejandro Cabrera <voidreamer@gmail.com>
+Main module to represent any node in the Maya API.
 '''
 
 import maya.OpenMaya
@@ -10,8 +11,7 @@ import acMayaApi
 
 
 class ACNode(maya.OpenMaya.MObject):
-    """Node representing any maya object in the scene.
-    """
+    """Node representing any maya object in the scene."""
 
     def __init__(self,
                  in_node):
@@ -24,7 +24,7 @@ class ACNode(maya.OpenMaya.MObject):
         """Add an attribute to specified node.
 
         :param in_attribute: (maya.OpenMaya.MObject)
-        :return None: (None)
+        :return: None
         """
         dependency = self.dependency_node
         attribute = maya.OpenMaya.MFnAttribute()
@@ -32,7 +32,7 @@ class ACNode(maya.OpenMaya.MObject):
 
         if dependency.hasAttribute(attribute.name()):
             # The node already has the attribute
-            raise
+            raise NotImplementedError
 
         dependency.addAttribute(in_attribute)
 
@@ -41,7 +41,7 @@ class ACNode(maya.OpenMaya.MObject):
     @property
     def dependency_node(self):
         if not self.hasFn(maya.OpenMaya.MFn.kDependencyNode):
-            raise
+            raise NotImplementedError
 
         return maya.OpenMaya.MFnDependencyNode(self)
 
@@ -79,7 +79,7 @@ class ACNode(maya.OpenMaya.MObject):
         dependency = self.dependency_node
         if dependency.hasAttribute(in_name):
             # object already has the attribute
-            raise
+            raise NotImplementedError
 
         if in_type is None:
             if in_value is not None:
@@ -88,7 +88,7 @@ class ACNode(maya.OpenMaya.MObject):
                 value = in_default_value
             else:
                 # Missing argument (type)
-                raise
+                raise NotImplementedError
 
             value_type = self.get_attribute_by_type(value)
         else:
